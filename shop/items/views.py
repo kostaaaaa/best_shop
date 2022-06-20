@@ -1,5 +1,5 @@
 from django.db import transaction
-from rest_framework import viewsets, response, status
+from rest_framework import viewsets, permissions, response, status
 from rest_framework.decorators import action
 
 from .models import Brand, Item, Product
@@ -10,16 +10,19 @@ from orders.models import Cart
 class BrandViewSet(viewsets.ModelViewSet):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     @transaction.atomic
     @action(

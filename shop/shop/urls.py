@@ -10,4 +10,7 @@ API_PATTERNS = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(API_PATTERNS)),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
